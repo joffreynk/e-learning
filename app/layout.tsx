@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(popins.className, 'bg-[#1b1b1b] text-white min-h-screen ')}>{children}</body>
+      <body className={cn(popins.className, 'bg-black-100 text-white min-h-screen ')}>{children}</body>
     </html>
   );
 }
