@@ -7,14 +7,12 @@ export const course = {
       name: "title",
       title: "Title",
       type: "string",
-      require,
       validation: (Rule: any) => Rule.required(),
     },
     {
       name: "slug",
       title: "Slug",
       type: "string",
-      require,
       validation: (Rule: any) => Rule.required(),
     },
     {
