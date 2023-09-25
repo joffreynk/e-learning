@@ -1,3 +1,4 @@
+import Filters from '@/components/Filters';
 import SearchForm from '@/components/searchForm';
 import { Button } from '@/components/ui/button'
 
@@ -11,7 +12,7 @@ export default function Home() {
         </div>
         <SearchForm />
       </section>
-      Filters
+      <Filters />
     </main>
   );
 }
