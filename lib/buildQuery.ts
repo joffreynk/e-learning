@@ -1,3 +1,11 @@
+type BuildQueryParams = {
+  type: string,
+  query: string,
+  category: string,
+  page: number,
+  perPage?: number,
+}
+
 export function buildQuery(params: BuildQueryParams) {
   const { type, query, category, page = 1, perPage = 20 } = params;
 
