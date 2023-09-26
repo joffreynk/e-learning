@@ -13,6 +13,7 @@ export const course = {
       name: "slug",
       title: "Slug",
       type: "string",
+      options: {source: 'title'},
       validation: (Rule: any) => Rule.required(),
     },
     {
