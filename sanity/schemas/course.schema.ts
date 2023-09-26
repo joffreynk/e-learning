@@ -12,8 +12,10 @@ export const course = {
     {
       name: "slug",
       title: "Slug",
-      type: "string",
-      options: {source: 'title'},
+      type: "slug",
+      options: {
+        source: (doc: any) => `${new Date().getTime()}${doc.title}`,
+      },
       validation: (Rule: any) => Rule.required(),
     },
     {
@@ -43,8 +45,8 @@ export const course = {
       type: "string",
       validation: (Rule: any) => Rule.required(),
       options: {
-        list: ['frontend', 'backend', 'fullStack', 'other']
-      }
+        list: ["frontend", "backend", "fullStack", "other"],
+      },
     },
   ],
 };
