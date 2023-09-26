@@ -24,7 +24,16 @@ export default async function Home() {
         Header
         <div className="mt-12 flex w-full flex-wrap justify-center gap-16 sm:justify-start">
           {courses.length > 0 ? (
-            courses.map((course: any) => <CourseCard key={course.slug} />)
+            courses.map((course: any) => (
+              <CourseCard
+                key={course.slug}
+                downloadLink={course.downloadLink}
+                slug={course.slug}
+                title={course.title}
+                downloadNumber={course.views}
+                image={course.image}
+              />
+            ))
           ) : (
             <p className="body-base-regular text-white-400">No course Found</p>
           )}
