@@ -32,6 +32,7 @@ const CourseCard = ({ title, downloadLink, downloadNumber, image, slug} : Props)
           </div>
           <CardTitle className="paragraph-semibold line-clamp-1 w-full text-left">{title}</CardTitle>
         </CardHeader>
+      </Link>
         <CardContent className="flex-between mt-4 p-0">
          <div className="flex-center body-medium gap-1.5 text-white">
           <Image src="/downloads.svg" width={20} height={20} alt="download" />
@@ -42,7 +43,6 @@ const CourseCard = ({ title, downloadLink, downloadNumber, image, slug} : Props)
           <Image src="/arrow-blue.svg" width={13} height={15} alt="arrow-blue" />
          </Link>
         </CardContent>
-      </Link>
     </Card>
   );
 };
