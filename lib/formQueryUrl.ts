@@ -3,7 +3,7 @@ import qs from 'query-string'
 type Props = {
     params: string,
     key: string,
-    value: string
+    value: string | null
 }
 
 export const formQueryUrl = ({params, key, value}: Props)=>{
