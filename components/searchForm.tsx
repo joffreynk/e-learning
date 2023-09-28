@@ -2,10 +2,38 @@
 
 import Image from "next/image"
 import { Input } from "@/components/ui/input"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { formQueryUrl } from "@/lib/formQueryUrl"
+import { useRouter, useSearchParams } from "next/navigation"
 
 const SearchForm = () => {
     const [search, setSearch] = useState('');
+      const searchParams = useSearchParams();
+      const router = useRouter();
+  
+  useEffect(() => {
+    const delayBounceFn = setTimeout(() =>{
+      let newUrl = '';
+      if(search){
+        newUrl = formQueryUrl({
+          params: searchParams.toString(),
+          key: 'query',
+          value: search
+        })
+      }else {
+        newUrl = formQueryUrl({
+          params: searchParams.toString(),
+          keysToRemove: ["query"],
+        });
+      }
+
+      router.push(newUrl, {scroll: false});
+    }, 300);
+  
+    return () => clearTimeout(delayBounceFn);
+  }, [search]);
+  
+  
   return (
     <form className="flex-center mx-auto mt-10 w-full sm:-mt-10 sm:px-5">
         <label className="flex-center relative w-full max-w-3xl">

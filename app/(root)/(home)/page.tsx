@@ -13,7 +13,11 @@ export const revalidate = 200
 
 export default async function Home({searchParams}: Props) {
 
-  const courses = await getCourses({category: searchParams?.category || '', query: '', page: '1'});
+  const courses = await getCourses({
+    category: searchParams?.category || "",
+    query: searchParams?.query || "",
+    page: "1",
+  });
 
  
   return (
