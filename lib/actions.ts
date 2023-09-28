@@ -35,3 +35,27 @@ export const getCourses = async(params: Courses)=> {
     
   }
 }
+
+export const getCoursesPlayList = async () => {
+  try {
+    const coursesPlayList = await client.fetch(
+      groq`*[_type=="coursesplaylist"]{
+        title,
+        _id,
+        courses[0...6]->{
+          title,
+          _id,
+          downloadLink,
+          "image": poster.asset->url,
+          views,
+          slug,
+          category,
+        }
+      }`
+    );
+
+    return coursesPlayList;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -1,7 +1,7 @@
 import CourseCard from "@/components/CourseCard";
 import Filters from '@/components/Filters';
 import SearchForm from '@/components/searchForm';
-import { getCourses } from '@/lib/actions';
+import { getCourses, getCoursesPlayList } from '@/lib/actions';
 
 type Props = {
   searchParams: {
@@ -19,7 +19,8 @@ export default async function Home({searchParams}: Props) {
     page: "1",
   });
 
- 
+  const coursesPlayList = await getCoursesPlayList();
+
   return (
     <main className="flex-center paddings w-full flex-col">
       <section className="nav-padding w-full">
@@ -31,26 +32,55 @@ export default async function Home({searchParams}: Props) {
         <SearchForm />
       </section>
       <Filters />
+      {(searchParams?.category || searchParams?.query) && (
+        <section className="flex-center mt-6 w-full flex-col sm:mt-20">
+          Header
+          <div className="mt-12 flex w-full flex-wrap justify-center gap-16 sm:justify-start">
+            {courses.length > 0 ? (
+              courses.map((course: any) => (
+                <CourseCard
+                  key={course._id}
+                  downloadLink={course.downloadLink}
+                  slug={course.slug.current}
+                  title={course.title}
+                  downloadNumber={course.views}
+                  image={course.image}
+                />
+              ))
+            ) : (
+              <p className="body-base-regular text-white-400">
+                No course Found
+              </p>
+            )}
+          </div>
+        </section>
+      )}
 
-      <section className="flex-center mt-6 w-full flex-col sm:mt-20">
-        Header
-        <div className="mt-12 flex w-full flex-wrap justify-center gap-16 sm:justify-start">
-          {courses.length > 0 ? (
-            courses.map((course: any) => (
-              <CourseCard
-                key={course._id}
-                downloadLink={course.downloadLink}
-                slug={course.slug.current}
-                title={course.title}
-                downloadNumber={course.views}
-                image={course.image}
-              />
-            ))
-          ) : (
-            <p className="body-base-regular text-white-400">No course Found</p>
-          )}
-        </div>
-      </section>
+      {coursesPlayList.map((plyaList: any) => (
+        <section className="flex-center mt-6 w-full flex-col sm:mt-20">
+          <h1 className="heading3 self-start text-white-800">
+            {plyaList.title}
+          </h1>
+          <div className="mt-12 flex w-full flex-wrap justify-center gap-16 sm:justify-start">
+            {plyaList.courses.length > 0 ? (
+              plyaList.courses.map((course: any) => (
+                <CourseCard
+                  key={course._id}
+                  downloadLink={course.downloadLink}
+                  slug={course.slug.current}
+                  title={course.title}
+                  downloadNumber={course.views}
+                  image={course.image}
+                />
+              ))
+            ) : (
+              <p className="body-base-regular text-white-400">
+                No course Found
+              </p>
+            )}
+          </div>
+        </section>
+      ))}
     </main>
   );
 }

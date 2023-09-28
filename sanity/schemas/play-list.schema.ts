@@ -1,6 +1,6 @@
 export const playList = {
-  name: "playlist",
-  title: "Play List",
+  name: "coursesPlaylist",
+  title: "Courses Play List",
   type: "document",
   fields: [
     {
