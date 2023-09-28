@@ -3,10 +3,18 @@ import Filters from '@/components/Filters';
 import SearchForm from '@/components/searchForm';
 import { getCourses } from '@/lib/actions';
 
-export default async function Home() {
+type Props = {
+  searchParams: {
+    [key: string]: string | undefined
+  }
+}
 
-  const courses = await getCourses({category: '', query: '', page: '1'});
-  
+export const revalidate = 200
+
+export default async function Home({searchParams}: Props) {
+
+  const courses = await getCourses({category: searchParams?.category || '', query: '', page: '1'});
+
  
   return (
     <main className="flex-center paddings w-full flex-col">
@@ -26,9 +34,9 @@ export default async function Home() {
           {courses.length > 0 ? (
             courses.map((course: any) => (
               <CourseCard
-                key={course.slug}
+                key={course._id}
                 downloadLink={course.downloadLink}
-                slug={course.slug}
+                slug={course.slug.current}
                 title={course.title}
                 downloadNumber={course.views}
                 image={course.image}

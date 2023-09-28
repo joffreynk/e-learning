@@ -45,7 +45,7 @@ export const course = {
       type: "string",
       validation: (Rule: any) => Rule.required(),
       options: {
-        list: ["frontend", "backend", "fullStack", "other"],
+        list: ["frontend", "backend", "fullstack", "other"],
       },
     },
   ],

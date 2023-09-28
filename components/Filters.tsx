@@ -4,13 +4,13 @@ import { formQueryUrl } from "@/lib/formQueryUrl";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-const links = ['all', 'frontend', 'backend', 'fullStack'];
+const links = ['all', 'frontend', 'backend', 'fullstack'];
 
 const Filters = () => {
   const [active, setActive] = useState('')
 
-  const roouter = useRouter()
   const searchParams = useSearchParams()
+  const router = useRouter()
 
   const handleFilters = (link: string) =>{
     setActive(link)
@@ -30,6 +30,8 @@ const Filters = () => {
         value: link.toLocaleLowerCase(),
       });
     }
+
+    router.push(newUrl, {scroll: false});
   }
   return (
     <ul className="text-white-800 body-text flex-wrap no-scrollbar flex w-full max-w-full gap-x-2  overflow-auto py-6 sm:max-w-2xl ">
