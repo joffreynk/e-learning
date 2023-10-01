@@ -33,12 +33,15 @@ export default async function Home({searchParams}: Props) {
         <SearchForm />
       </section>
       <Filters />
-      {(searchParams?.category || searchParams?.query) && (
+      {(searchParams?.category ||
+        searchParams?.query) && (
         <section className="flex-center mt-6 w-full flex-col sm:mt-20">
           <Heading
             title="Courses"
-            category={searchParams?.category || ""}
-            query={searchParams?.query || ''}
+            category={
+              searchParams?.category || ""
+            }
+            query={searchParams?.query || ""}
           />
           <div className="mt-12 flex w-full flex-wrap justify-center gap-16 sm:justify-start">
             {courses.length > 0 ? (
