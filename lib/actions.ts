@@ -36,10 +36,26 @@ export const getCourses = async(params: Courses)=> {
   }
 }
 
+
+
+export const getCourseDetails = async (courseId: string) => {
+
+  try {
+    const course = await client.fetch(
+      groq`*[_type == 'courses' && slug.current  match '${courseId}']`
+    );
+
+    return course;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 export const getCoursesPlayList = async () => {
   try {
     const coursesPlayList = await client.fetch(
-      groq`*[_type=="coursesplaylist"]{
+      groq`*[_type=="coursesPlaylist"]{
         title,
         _id,
         courses[0...6]->{
