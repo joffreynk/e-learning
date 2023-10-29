@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export const course = {
   name: "courses",
   title: "Courses",
@@ -38,6 +40,27 @@ export const course = {
       options: {
         hotspot: true,
       },
+    },
+    {
+      name: "description",
+      title: "Description",
+      type: "text",
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: "images",
+      title: "Images",
+      type: "array",
+      of: [
+        {
+          type: "image",
+          name: "image",
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "category",

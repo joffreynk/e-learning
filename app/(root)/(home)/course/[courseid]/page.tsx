@@ -6,10 +6,10 @@ export default async function Home({ params }: { params: { courseid: string } })
   const {courseid} = params;
   const courseDetails = await getCourseDetails(courseid);
 
-  console.log("====================================");
-  console.log(courseDetails);
-
-  console.log("====================================");
-
-  return <main className="flex-center paddings w-full flex-col"></main>;
+  return (
+    <main className="flex-center  paddings w-full flex-col">
+      <h2 className=" pt-20 text-white">{courseDetails.title}</h2>
+      <p>{courseDetails.description}</p>
+    </main>
+  );
 }

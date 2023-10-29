@@ -42,10 +42,20 @@ export const getCourseDetails = async (courseId: string) => {
 
   try {
     const course = await client.fetch(
-      groq`*[_type == 'courses' && slug.current  match '${courseId}']`
+      groq`*[_type == 'courses' && slug.current  match '${courseId}']{
+        title,
+        _id,
+        downloadLink,
+        "image": poster.asset->url,
+        "allImages":  images[].asset->url,
+        views,
+        slug,
+        description,
+        category,
+      }`
     );
 
-    return course;
+    return course[0];
   } catch (error) {
     console.log(error);
   }
